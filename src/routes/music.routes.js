@@ -11,4 +11,8 @@ const router = express.Router()
 router.post("/upload", authMiddleware.authArtist, upload.single("music"), musicController.uploadMusic)
 router.post("/album", authMiddleware.authArtist, musicController.createAlbum)
 
+router.get("/",authMiddleware.authUser, musicController.getAllMusics)
+router.get("/collection",authMiddleware.authUser, musicController.getAllAlbums)
+router.get("/collection/:albumId", authMiddleware.authUser, musicController.getAlbumById)
+
 module.exports = router
